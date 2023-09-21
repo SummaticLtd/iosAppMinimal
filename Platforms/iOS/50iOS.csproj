@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0-ios</TargetFramework>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+        <OutputType>Exe</OutputType>
+        <UseMauiEssentials>true</UseMauiEssentials>
+        <SupportedOSPlatformVersion>12.0</SupportedOSPlatformVersion>
+		<NoWarn>;8524</NoWarn>
+		<ProvisioningType>manual</ProvisioningType>
+		<!--<InvariantGlobalization>true</InvariantGlobalization>-->
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+      <BuildIpa>False</BuildIpa>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+      <PublishAot>true</PublishAot>
+      <StripSymbols>false</StripSymbols>
+      <MtouchUseLlvm>False</MtouchUseLlvm>
+	  <MtouchLink>Full</MtouchLink>
+	  <TrimmerSingleWarn>false</TrimmerSingleWarn>
+      <PublishAotUsingRuntimePack>true</PublishAotUsingRuntimePack>
+      <BuildIpa>True</BuildIpa>
+      <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+      <CodesignKey>Apple Distribution: Summatic Ltd (525T7X7RMZ)</CodesignKey>
+      <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+      <CodesignProvision>Summatic iOS AppStore</CodesignProvision>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+      <CodesignKey>Apple Development: Kevin Crooks (394YY8DY7J)</CodesignKey>
+      <CodesignProvision>VS: com.summatic.ios Development</CodesignProvision>
+    </PropertyGroup>
+	<ItemGroup>
+		<RdXmlFile Include="Test.rd.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<TrimmerRootDescriptor Include="Roots.xml" />
+	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="SkiaSharp.Views" Version="2.88.3" />
+        <PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
+        <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.0-preview.6.8686" />
+    </ItemGroup>
+</Project>

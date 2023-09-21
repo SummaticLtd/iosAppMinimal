@@ -1,0 +1,3 @@
+<linker>
+  <assembly fullname="50iOS" preserve="All" />
+</linker>

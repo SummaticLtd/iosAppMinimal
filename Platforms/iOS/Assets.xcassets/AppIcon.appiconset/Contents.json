@@ -1,0 +1,117 @@
+{
+  "images": [
+    {
+      "scale": "3x",
+      "size": "20x20",
+      "idiom": "iphone",
+      "filename": "SquareLogo 60.png"
+    },
+    {
+      "scale": "3x",
+      "size": "29x29",
+      "idiom": "iphone",
+      "filename": "SquareLogo 87.png"
+    },
+    {
+      "scale": "2x",
+      "size": "60x60",
+      "idiom": "iphone",
+      "filename": "SquareLogo 120.png"
+    },
+    {
+      "scale": "3x",
+      "size": "60x60",
+      "idiom": "iphone",
+      "filename": "SquareLogo 180.png"
+    },
+    {
+      "scale": "1x",
+      "size": "20x20",
+      "idiom": "ipad",
+      "filename": "SquareLogo 20.png"
+    },
+    {
+      "scale": "1x",
+      "size": "29x29",
+      "idiom": "ipad",
+      "filename": "SquareLogo 29.png"
+    },
+    {
+      "scale": "2x",
+      "size": "29x29",
+      "idiom": "ipad",
+      "filename": "SquareLogo 581.png"
+    },
+    {
+      "scale": "1x",
+      "size": "40x40",
+      "idiom": "ipad",
+      "filename": "SquareLogo 402.png"
+    },
+    {
+      "scale": "2x",
+      "size": "40x40",
+      "idiom": "ipad",
+      "filename": "SquareLogo 80.png"
+    },
+    {
+      "scale": "1x",
+      "size": "76x76",
+      "idiom": "ipad",
+      "filename": "SquareLogo 76.png"
+    },
+    {
+      "scale": "2x",
+      "size": "76x76",
+      "idiom": "ipad",
+      "filename": "SquareLogo 152.png"
+    },
+    {
+      "scale": "2x",
+      "size": "83.5x83.5",
+      "idiom": "ipad",
+      "filename": "SquareLogo 167.png"
+    },
+    {
+      "scale": "1x",
+      "size": "1024x1024",
+      "idiom": "ios-marketing",
+      "filename": "SquareLogo 1024.png"
+    },
+    {
+      "scale": "2x",
+      "size": "29x29",
+      "idiom": "iphone",
+      "filename": "SquareLogo 58.png"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "iphone",
+      "filename": "SquareLogo 40.png"
+    },
+    {
+      "scale": "2x",
+      "size": "40x40",
+      "idiom": "iphone",
+      "filename": "SquareLogo 801.png"
+    },
+    {
+      "scale": "3x",
+      "size": "40x40",
+      "idiom": "iphone",
+      "filename": "SquareLogo 1201.png"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "ipad",
+      "filename": "SquareLogo 401.png"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  }
+}

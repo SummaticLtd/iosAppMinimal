@@ -1,0 +1,142 @@
+# Variable 'XCodeVersion' was defined in the Variables tab
+# Variable Group 'SummaticAppleCerts' was defined in the Variables tab
+# Agent Queue 'Azure Pipelines' was used with unrecognized Agent Specification, vmImage property must be specified to determine image - https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software
+name: 1.0$(rev:.r)
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/dotnet8
+jobs:
+- job: Phase_1
+  displayName: Phase 1
+  cancelTimeoutInMinutes: 1
+  pool:
+    name: Azure Pipelines
+  steps:
+  - checkout: self
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      versionSpec: 6.0.0
+  - task: Bash@3
+    displayName: Select XCode
+    inputs:
+      targetType: inline
+      script: >
+        # Select the xcode version: https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#xcode
+
+        /bin/bash -c "echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_15.0.app;sudo xcode-select --switch /Applications/Xcode_15.0.app/Contents/Developer"
+  - task: Bash@3
+    displayName: Install dotnet sdk daily copy
+    inputs:
+      targetType: inline
+      script: >-
+        #!/bin/bash
+
+
+        # Set the installation directory
+
+        INSTALL_DIR="$HOME/.dotnet"
+
+
+        # Download and run the dotnet-install.sh script
+
+
+        echo "about to curl"
+
+
+        curl -L https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
+
+
+        echo "about to modify"
+
+
+        chmod +x dotnet-install.sh
+
+
+        echo "about to install"
+
+
+        ./dotnet-install.sh --channel 8.0 --quality daily --install-dir $INSTALL_DIR --no-path
+
+
+        # Add the .NET Core installation directory to the PATH
+
+        echo 'export PATH="$PATH:'$INSTALL_DIR'"' >> "$HOME/.bashrc"
+
+        source "$HOME/.bashrc"
+
+
+        # Clean up the downloaded script
+
+        rm dotnet-install.sh
+
+
+        # Verify the installation
+
+        dotnet --version
+  - task: DotNetCoreCLI@2
+    displayName: dotnet workload list
+    inputs:
+      command: custom
+      custom: workload
+      arguments: list
+  - task: DotNetCoreCLI@2
+    displayName: dotnet workload install maui-ios with nightly
+    inputs:
+      command: custom
+      custom: workload
+      arguments: install maui-ios --source https://api.nuget.org/v3/index.json --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json
+  - task: DotNetCoreCLI@2
+    displayName: dotnet restore
+    inputs:
+      command: restore
+      projects: Platforms/iOS/50iOS.csproj
+  - task: vs-publisher-473885.motz-mobile-buildtasks.ios-bundle-version.ios-bundle-version@1
+    displayName: Bump iOS Versions in Platforms/iOS/Info.plist
+    inputs:
+      sourcePath: Platforms/iOS/Info.plist
+      versionCodeOption: timestamp
+      versionName: ''
+  - task: InstallAppleCertificate@2
+    displayName: Install an Apple certificate
+    inputs:
+      certSecureFile: 5ab25b14-2fe6-4fa0-b125-8d338c07616f
+      certPwd: $(AppleDistributionCertPwd)
+      deleteCert: false
+      deleteCustomKeychain: false
+      setUpPartitionIdACLForPrivateKey: false
+  - task: InstallAppleProvisioningProfile@1
+    displayName: Install an Apple provisioning profile
+    inputs:
+      provProfileSecureFile: 1b43e18a-4e9f-446e-b73f-ac4861eb8cda
+  - task: DotNetCoreCLI@2
+    displayName: dotnet publish
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: Platforms/iOS/50iOS.csproj
+      arguments: -c Release -p:CodesignKey="$(AppleDistributionCertName)" -p:CodesignProvision="$(iosAppStoreProvisionUUID)" -bl:$(build.artifactstagingdirectory)/build.binlog
+      zipAfterPublish: false
+  - task: CopyFiles@2
+    name: CopyFiles4
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/Platforms/iOS
+      Contents: >-
+        **/*.ipa
+
+        **/appMetadata/**
+
+        **/*.dSYM/**
+      TargetFolder: $(build.artifactstagingdirectory)
+  - task: PublishBuildArtifacts@1
+    name: PublishBuildArtifacts5
+    displayName: 'Publish Artifact: drop'
+    condition: succeededOrFailed()
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+...

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>12.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false />
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fontello.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-Italic.ttf</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To attach a photo to your feedback, we need access to your Photo Library.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>active-directory-b2c-xamarin-native</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msalf62f39d8-396a-48be-9d49-ec0526fac765</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>summatic</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>summatic</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIStatusBarHidden</key>
+	<true />
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false />
+	<key>CFBundleName</key>
+	<string>Summatic</string>
+	<key>CFBundleDisplayName</key>
+	<string>Summatic</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.summatic.ios</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.14.45</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
+</dict>
+</plist>
