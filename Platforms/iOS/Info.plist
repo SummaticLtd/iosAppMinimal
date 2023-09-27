@@ -75,7 +75,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.summatic.ios</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.14.45</string>
+	<string>2.15.0</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mailto</string>

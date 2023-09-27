@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using UIKit;
 using System;
+using FSLibrary;
+
 namespace Summatic.iOS
 {
 
@@ -13,25 +15,31 @@ namespace Summatic.iOS
         private readonly UIWindow window = new UIWindow(UIScreen.MainScreen.Bounds);
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            LogToDevice("Starting FinishedLaunching");
+            Log.MessageToConsole("Starting FinishedLaunching");
             try
             {
-                window.RootViewController = new UIViewController();
+                window.RootViewController = new UIViewController() { View = new UIView() };
                 window.MakeKeyAndVisible();
 
-                LogToDevice("Ending FinishedLaunching");
+                Log.MessageToConsole("Getting PlatformData");
+                var pd = new PlatformData();
+                Log.MessageToConsole("Getting OS");
+                var os = pd.OS;
+                Log.MessageToConsole("Logging OS");
+                Log.MessageToConsole("OS: " + os.ToString());
+
+                Log.MessageToConsole("Passing in");
+
+                var pi = new PassedIn(pd);
+
+                Log.MessageToConsole("Ending FinishedLaunching");
                 return true;
             }
             catch (System.Exception ex)
             {
-                LogToDevice($"EXCEPTION {ex.Message} ST:{ex.StackTrace}");
+                Log.MessageToConsole($"EXCEPTION {ex.Message} ST:{ex.StackTrace}");
                 return true;
             }
-        }
-
-        public static void LogToDevice(string message)
-        {
-            Console.WriteLine($"ѦSUMMATIC CWL: {message}");
         }
     }
 }

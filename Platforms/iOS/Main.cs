@@ -1,5 +1,6 @@
 ﻿using UIKit;
 using System.Globalization;
+using FSLibrary;
 
 namespace Summatic.iOS
 {
@@ -12,9 +13,9 @@ namespace Summatic.iOS
             CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
-            AppDelegate.LogToDevice("Starting MAIN");
+            Log.MessageToConsole("Starting MAIN");
             UIApplication.Main(args, null, typeof(AppDelegate));
-            AppDelegate.LogToDevice("Ending MAIN");
+            Log.MessageToConsole("Ending MAIN");
         }
     }
 }

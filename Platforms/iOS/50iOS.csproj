@@ -32,12 +32,12 @@
 	<ItemGroup>
 		<RdXmlFile Include="Test.rd.xml" />
 	</ItemGroup>
-	<ItemGroup>
-		<TrimmerRootDescriptor Include="Roots.xml" />
-	</ItemGroup>
     <ItemGroup>
         <PackageReference Include="SkiaSharp.Views" Version="2.88.3" />
         <PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
         <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.0-preview.6.8686" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\PlatformData\PlatformData.fsproj" />
     </ItemGroup>
 </Project>
